@@ -65,11 +65,12 @@ class TreeBlockService extends BaseBlockService
      */
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
+        $defaults = $this->defaults;
         $resolver->setDefaults(array(
             'template'         => function (Options $options, $value) { return $value ?: 'SonataDoctrinePHPCRAdminBundle:Block:tree.html.twig'; },
             'id'               => function (Options $options, $value) { return $value ?: '/'; },
             'selected'         => function (Options $options, $value) { return $value ?: null; },
-            'routing_defaults' => function (Options $options, $value) { return $value ?: $this->defaults; },
+            'routing_defaults' => function (Options $options, $value) use ($defaults) { return $value ?: $defaults; },
         ));
     }
 
